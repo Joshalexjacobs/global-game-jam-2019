@@ -10,8 +10,16 @@ public class FloatingText : MonoBehaviour {
     private ParticleSystem particleSystemRenderer;
     private AudioSource [] audio;
 
-	// Use this for initialization
-	void Start () {
+    public void Init(string text) {
+        if(this.text == null) {
+            this.text = GetComponent<Text>();
+        }
+
+        this.text.text = text;
+    }
+
+    // Use this for initialization
+    void Start () {
         text = GetComponent<Text>();
         itemDragHandler = GetComponent<ItemDragHandler>();
         particleSystemRenderer = GetComponentInChildren<ParticleSystem>();
@@ -20,6 +28,7 @@ public class FloatingText : MonoBehaviour {
         text.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f, 0f, 0f);
         itemDragHandler.enabled = false;
         audio[0].pitch = Random.Range(0.85f, 1.1f);
+        audio[0].Play();
 
         StartCoroutine("FadeIn");
     }

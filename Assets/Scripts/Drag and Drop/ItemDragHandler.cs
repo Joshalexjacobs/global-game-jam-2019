@@ -6,11 +6,11 @@ using UnityEngine.EventSystems;
 public class ItemDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler  {
 
     private AudioSource[] audio;
-
-    public Canvas canvas;
+    private Canvas canvas;
 
     void Start() {
         audio = GetComponents<AudioSource>();
+        canvas = GameObject.FindObjectOfType<Canvas>();
     }
 
     public void OnDrag(PointerEventData eventData) {
