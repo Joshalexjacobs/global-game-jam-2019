@@ -5,7 +5,13 @@ using UnityEngine.EventSystems;
 
 public class ItemDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler  {
 
+    private AudioSource[] audio;
+
     public Canvas canvas;
+
+    void Start() {
+        audio = GetComponents<AudioSource>();
+    }
 
     public void OnDrag(PointerEventData eventData) {
         Vector3 screenPoint = Input.mousePosition;
@@ -26,14 +32,11 @@ public class ItemDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler  {
             if (RectTransformUtility.RectangleContainsScreenPoint(rectTransform, Camera.main.ScreenToWorldPoint(screenPoint))) {
                 transform.position = dropHandler.transform.position;
                 transform.parent = dropHandler.transform;
+                audio[1].pitch = Random.Range(0.95f, 1.1f);
+                audio[1].Play();
             }
         }
     }
-
-    // Use this for initialization
-    void Start () {
-		
-	}
 	
 	// Update is called once per frame
 	void Update () {
