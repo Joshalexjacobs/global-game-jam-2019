@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LineManager : MonoBehaviour {
 
-    public LineObject lineObject1;
+    public string[] scenes;
 
 	// Use this for initialization
 	void Start () {

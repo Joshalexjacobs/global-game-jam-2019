@@ -1,14 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class ItemDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler  {
 
     private AudioSource[] audio;
     private Canvas canvas;
+    private Text text;
 
     void Start() {
+        text = GetComponent <Text> ();
         audio = GetComponents<AudioSource>();
         canvas = GameObject.FindObjectOfType<Canvas>();
     }
@@ -34,6 +37,16 @@ public class ItemDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler  {
                 transform.parent = dropHandler.transform;
                 audio[1].pitch = Random.Range(0.95f, 1.1f);
                 audio[1].Play();
+
+                FloatingText floatingTextObject = GetComponent<FloatingText>();
+                Storyboard storyboard = GameObject.FindObjectOfType<Storyboard>();
+
+                if(floatingTextObject != null) {
+                    if(storyboard != null) {
+                        floatingTextObject.set = true;
+                        storyboard.StartScene(floatingTextObject.GetPath());
+                    }
+                }
             }
         }
     }

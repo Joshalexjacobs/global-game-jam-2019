@@ -5,6 +5,11 @@ using UnityEngine.EventSystems;
 
 public class ItemDropHandler : MonoBehaviour, IDropHandler {
 
+    // Use this for initialization
+    void Start() {
+
+    }
+
     public void OnDrop(PointerEventData eventData) {
         RectTransform sentenceLine = transform as RectTransform;
 

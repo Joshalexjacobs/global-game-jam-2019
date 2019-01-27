@@ -9,13 +9,20 @@ public class FloatingText : MonoBehaviour {
     private ItemDragHandler itemDragHandler;
     private ParticleSystem particleSystemRenderer;
     private AudioSource [] audio;
+    private SceneObject path;
 
-    public void Init(string text) {
+    public string word;
+    public bool set = false;
+
+    public void Init(string text, SceneObject path) {
         if(this.text == null) {
             this.text = GetComponent<Text>();
         }
 
+        this.path = path;
+
         this.text.text = text;
+        word = text;
     }
 
     // Use this for initialization
@@ -33,6 +40,10 @@ public class FloatingText : MonoBehaviour {
         StartCoroutine("FadeIn");
     }
 
+    public SceneObject GetPath() {
+        return path;
+    }
+
     IEnumerator FadeIn() {
         for(int i = 0; i < 10; i++) {
             text.color = new Color(text.color.r, text.color.g, text.color.b, 0.1f * i);
@@ -43,11 +54,28 @@ public class FloatingText : MonoBehaviour {
         StartCoroutine("Fluctuate");
     }
 
+    public void BeginFadeOut() {
+        StartCoroutine("FadeOut");
+    }
+
+    IEnumerator FadeOut() {
+        GetComponentInChildren<ParticleSystem>().Stop();
+
+        for (int i = 10; i >= 0; i--) {
+            text.color = new Color(text.color.r, text.color.g, text.color.b, 0.1f * i);
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        yield return new WaitForSeconds(2f);
+
+        Destroy(gameObject);
+    }
+
     IEnumerator Fluctuate() {
-        while(true) {
+        while(!set) {
             Color newColor = Random.ColorHSV(0.5f, 1f, 0.5f, 1f, 0.2f, 1f);
 
-            for(float i = 0f; i < 1f; i += 0.01f) {
+            for(float i = 0f; i < 1f && !set; i += 0.01f) {
                 text.color = Color.Lerp(text.color, newColor, i);
                 //particleSystemRenderer.material.SetColor("Tint Color", text.color);
                 particleSystemRenderer.startColor = text.color;
