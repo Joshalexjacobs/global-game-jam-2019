@@ -33,9 +33,29 @@ public class Storyboard : MonoBehaviour {
         SceneObject scene5Swingset2 = new SceneObject("Well of course!");
 
         SceneObject scene6Big = new SceneObject("Big and spacious with a lot of windows.\nWhat did you enjoy seeing through the windows?");
-
+        SceneObject scene6Traffic = new SceneObject("The low hum of engines as they passed. Every car ride you went on you would always fall asleep.");
+        SceneObject scene6Traffic2 = new SceneObject("How many cars did you own?");
+        SceneObject scene6Traffic3 = new SceneObject("Sitting there quietly in the driveway.");
+        SceneObject scene6Birds = new SceneObject("I can hear them chirping now, singing their song as they dance around the feeder.\nWhich bird was your favorite?");
+        SceneObject scene6Birds2 = new SceneObject("I always loved its  chirping");
+        SceneObject scene6Neighbors = new SceneObject("Oh you creeper, you. Always had to see what everyone was up to.\nHow did you feel about the neighbors?");
+        SceneObject scene6Neighbors2 = new SceneObject("A strange bunch indeed. Always walking and playing in the yard.");
 
         SceneObject scene7 = new SceneObject("What else was in the front yard?");
+
+        SceneObject scene8Table = new SceneObject("Worn now, but still solid and strong. Outside parties and picnics has given it years of use.\nWho did you enjoy time with?");
+        SceneObject scene8Table2 = new SceneObject("You would eat by yourself?");
+
+        SceneObject scene8OakTree = new SceneObject("Wide spreading arms gave the perfect shade.");
+        SceneObject scene8PineTree = new SceneObject("With a height that pierced the clouds and hid the harsh sun.");
+
+        SceneObject scene8Tree = new SceneObject("What do you enjoy doing underneath the tree?");
+        SceneObject scene8Tree2 = new SceneObject("Feel the peaceful breeze and the smell of freshly mowed grass.\nWho would wake you up from the nap?");
+        SceneObject scene8Tree3 = new SceneObject("You would wake up on you own?");
+
+        SceneObject sceneEnd1 = new SceneObject("Who do you enjoy life with?");
+        SceneObject sceneEnd2 = new SceneObject("You're not alone. We're here for you. We're ALL here for you.");
+        SceneObject sceneEnd3 = new SceneObject("It's been a long day. You look tired. We'll try again tomorrow.");
 
         scene1.AddBranch(new BranchObject("Hello?", scene2, 0.5f));
         scene1.AddBranch(new BranchObject("...", scene2, 1f));
@@ -73,8 +93,59 @@ public class Storyboard : MonoBehaviour {
 
         scene5Swingset2.AddBranch(new BranchObject("...", scene7));
 
-        //StartScene(scene1);
-        StartScene(scene4);
+        scene6Big.AddBranch(new BranchObject("Traffic", scene6Traffic));
+        scene6Big.AddBranch(new BranchObject("Birds", scene6Birds));
+        scene6Big.AddBranch(new BranchObject("Neighbors", scene6Neighbors));
+
+        scene6Traffic.AddBranch(new BranchObject("...", scene6Traffic2));
+        scene6Traffic2.AddBranch(new BranchObject("1", scene6Traffic3));
+        scene6Traffic2.AddBranch(new BranchObject("2", scene6Traffic3));
+        scene6Traffic2.AddBranch(new BranchObject("3", scene6Traffic3));
+        scene6Traffic3.AddBranch(new BranchObject("...", scene7));
+
+        scene6Birds.AddBranch(new BranchObject("Robin", scene6Birds2));
+        scene6Birds.AddBranch(new BranchObject("Cardinal", scene6Birds2));
+        scene6Birds.AddBranch(new BranchObject("Bluejay", scene6Birds2));
+        scene6Birds2.AddBranch(new BranchObject("...", scene7));
+
+        scene6Neighbors.AddBranch(new BranchObject("Sad", scene6Neighbors2));
+        scene6Neighbors.AddBranch(new BranchObject("Angry", scene6Neighbors2));
+        scene6Neighbors.AddBranch(new BranchObject("Nervous", scene6Neighbors2));
+        scene6Neighbors2.AddBranch(new BranchObject("...", scene7));
+
+        scene7.AddBranch(new BranchObject("Oak Table", scene8Table));
+        scene7.AddBranch(new BranchObject("Pine Table", scene8Table));
+        scene7.AddBranch(new BranchObject("Oak Tree", scene8OakTree));
+        scene7.AddBranch(new BranchObject("Pine Tree", scene8PineTree));
+
+        scene8Table.AddBranch(new BranchObject("My Spouse", scene8Table));
+        scene8Table.AddBranch(new BranchObject("My Family", scene8Table));
+        scene8Table.AddBranch(new BranchObject("My Friends", scene8Table));
+        scene8Table.AddBranch(new BranchObject("No one", scene8Table2));
+
+        scene8Table2.AddBranch(new BranchObject("...", sceneEnd1));
+
+        scene8OakTree.AddBranch(new BranchObject("...", scene8Tree));
+        scene8PineTree.AddBranch(new BranchObject("...", scene8Tree));
+
+        scene8Tree.AddBranch(new BranchObject("Reading a book", scene8Tree2));
+        scene8Tree.AddBranch(new BranchObject("Taking a nap", scene8Tree2));
+
+        scene8Tree2.AddBranch(new BranchObject("My Spouse", scene8Tree3));
+        scene8Tree2.AddBranch(new BranchObject("My Family", scene8Tree3));
+        scene8Tree2.AddBranch(new BranchObject("My Friends", scene8Tree3));
+        scene8Tree2.AddBranch(new BranchObject("No one", scene8Tree3));
+
+        scene8Tree3.AddBranch(new BranchObject("...", sceneEnd1));
+
+        sceneEnd1.AddBranch(new BranchObject("I'm alone", sceneEnd2));
+        sceneEnd1.AddBranch(new BranchObject("I'm alone", sceneEnd2));
+        sceneEnd1.AddBranch(new BranchObject("I'm alone", sceneEnd2));
+
+        sceneEnd2.AddBranch(new BranchObject("...", sceneEnd3));
+
+        StartScene(scene1);
+        //StartScene(scene4);
     }
 
     public void StartScene(SceneObject scene) {
