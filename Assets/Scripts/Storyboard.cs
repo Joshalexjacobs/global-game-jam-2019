@@ -8,6 +8,7 @@ public class Storyboard : MonoBehaviour {
     public Canvas canvas;
     public GameObject floatingText;
     public Text narratorText;
+    public LineManager lineManager;
 
     private List<FloatingTextProperties> floatingTextPropertiesList = new List<FloatingTextProperties>();
     private List<FloatingText> floatingTextList = new List<FloatingText>();
@@ -34,9 +35,4 @@ public class Storyboard : MonoBehaviour {
         floatingTextObj.Init(text);
         floatingTextList.Add(floatingTextObj);
     }
-
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

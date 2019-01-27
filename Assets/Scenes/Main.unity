@@ -356,7 +356,8 @@ MonoBehaviour:
   canvas: {fileID: 1842130059}
   floatingText: {fileID: 1537199685103398, guid: df13d04bdcb6a4a4ba7c36864bf209b0,
     type: 2}
-  narratorText: {fileID: 0}
+  narratorText: {fileID: 207360258}
+  lineManager: {fileID: 1363098628}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
