@@ -14,6 +14,9 @@ public class Storyboard : MonoBehaviour {
     private List<BranchObject> branches = new List<BranchObject>();
     private List<FloatingTextProperties> floatingTextPropertiesList = new List<FloatingTextProperties>();
 
+    public Vector3[] spawnPoint;
+    public int currentSpawnPoint = 0;
+
     // Use this for initialization
     void Start () {
         SceneObject scene1 = new SceneObject("Hello...");
@@ -61,91 +64,87 @@ public class Storyboard : MonoBehaviour {
         scene1.AddBranch(new BranchObject("...", scene2, 1f));
         scene1.AddBranch(new BranchObject("Who are you?", scene1Who, 5f));
 
-        scene1Who.AddBranch(new BranchObject("Uh...", scene2));
+        scene1Who.AddBranch(new BranchObject("Uh...", scene2, 1f));
 
         scene2.AddBranch(new BranchObject("Alright...", scene3, 2f));
         scene2.AddBranch(new BranchObject("Good...", scene3, 2f));
         scene2.AddBranch(new BranchObject("Uh...", scene3, 2f));
 
-        scene3.AddBranch(new BranchObject("Work", scene3Work));
-        scene3.AddBranch(new BranchObject("School", scene3School));
-        scene3.AddBranch(new BranchObject("Home", scene4));
+        scene3.AddBranch(new BranchObject("Home", scene4, 1f));
 
         scene3Work.AddBranch(new BranchObject("Home..?", scene4));
         scene3School.AddBranch(new BranchObject("Home..?", scene4));
 
-        scene4.AddBranch(new BranchObject("Big", scene6Big));
-        scene4.AddBranch(new BranchObject("Small", scene5Small));
+        scene4.AddBranch(new BranchObject("Big", scene6Big, 2f));
+        scene4.AddBranch(new BranchObject("Small", scene5Small, 1f));
 
-        scene5Small.AddBranch(new BranchObject("Firepit", scene5Firepit));
-        scene5Firepit.AddBranch(new BranchObject("...", scene7));
+        scene5Small.AddBranch(new BranchObject("Firepit", scene5Firepit, 1f));
+        scene5Firepit.AddBranch(new BranchObject("...", scene7, 2f));
 
-        scene5Small.AddBranch(new BranchObject("Garden", scene5Garden2));
-        scene5Garden.AddBranch(new BranchObject("Flowers", scene5Garden2));
-        scene5Garden.AddBranch(new BranchObject("Fruits", scene5Garden2));
-        scene5Garden.AddBranch(new BranchObject("Vegetables", scene5Garden2));
+        scene5Small.AddBranch(new BranchObject("Garden", scene5Garden, 0.5f));
+        scene5Garden.AddBranch(new BranchObject("Flowers", scene5Garden2, 1f));
+        scene5Garden.AddBranch(new BranchObject("Fruits", scene5Garden2, 1f));
+        scene5Garden.AddBranch(new BranchObject("Vegetables", true));
 
-        scene5Garden2.AddBranch(new BranchObject("...", scene7));
+        scene5Garden2.AddBranch(new BranchObject("...", scene7, 2f));
 
         scene5Small.AddBranch(new BranchObject("Swingset", scene5Swingset));
         scene5Swingset.AddBranch(new BranchObject("Yes", scene5Swingset2));
         scene5Swingset.AddBranch(new BranchObject("No", scene5Swingset2));
 
-        scene5Swingset2.AddBranch(new BranchObject("...", scene7));
+        scene5Swingset2.AddBranch(new BranchObject("...", scene7, 2f));
 
         scene6Big.AddBranch(new BranchObject("Traffic", scene6Traffic));
         scene6Big.AddBranch(new BranchObject("Birds", scene6Birds));
         scene6Big.AddBranch(new BranchObject("Neighbors", scene6Neighbors));
 
-        scene6Traffic.AddBranch(new BranchObject("...", scene6Traffic2));
+        scene6Traffic.AddBranch(new BranchObject("...", scene6Traffic2, 2f));
         scene6Traffic2.AddBranch(new BranchObject("1", scene6Traffic3));
         scene6Traffic2.AddBranch(new BranchObject("2", scene6Traffic3));
         scene6Traffic2.AddBranch(new BranchObject("3", scene6Traffic3));
         scene6Traffic3.AddBranch(new BranchObject("...", scene7));
 
-        scene6Birds.AddBranch(new BranchObject("Robin", scene6Birds2));
+        scene6Birds.AddBranch(new BranchObject("Robin", true));
         scene6Birds.AddBranch(new BranchObject("Cardinal", scene6Birds2));
         scene6Birds.AddBranch(new BranchObject("Bluejay", scene6Birds2));
-        scene6Birds2.AddBranch(new BranchObject("...", scene7));
+        scene6Birds2.AddBranch(new BranchObject("...", scene7, 2f));
 
         scene6Neighbors.AddBranch(new BranchObject("Sad", scene6Neighbors2));
-        scene6Neighbors.AddBranch(new BranchObject("Angry", scene6Neighbors2));
+        scene6Neighbors.AddBranch(new BranchObject("Angry", true));
         scene6Neighbors.AddBranch(new BranchObject("Nervous", scene6Neighbors2));
-        scene6Neighbors2.AddBranch(new BranchObject("...", scene7));
+        scene6Neighbors2.AddBranch(new BranchObject("...", scene7, 2f));
 
-        scene7.AddBranch(new BranchObject("Oak Table", scene8Table));
-        scene7.AddBranch(new BranchObject("Pine Table", scene8Table));
+        scene7.AddBranch(new BranchObject("Picnic Table", scene8Table));
         scene7.AddBranch(new BranchObject("Oak Tree", scene8OakTree));
         scene7.AddBranch(new BranchObject("Pine Tree", scene8PineTree));
 
-        scene8Table.AddBranch(new BranchObject("My Spouse", scene8Table));
-        scene8Table.AddBranch(new BranchObject("My Family", scene8Table));
-        scene8Table.AddBranch(new BranchObject("My Friends", scene8Table));
+        scene8Table.AddBranch(new BranchObject("My Spouse", true));
+        scene8Table.AddBranch(new BranchObject("My Family", true));
+        scene8Table.AddBranch(new BranchObject("My Friends", true));
         scene8Table.AddBranch(new BranchObject("No one", scene8Table2));
 
-        scene8Table2.AddBranch(new BranchObject("...", sceneEnd1));
+        scene8Table2.AddBranch(new BranchObject("...", sceneEnd1, 2f));
 
-        scene8OakTree.AddBranch(new BranchObject("...", scene8Tree));
-        scene8PineTree.AddBranch(new BranchObject("...", scene8Tree));
+        scene8OakTree.AddBranch(new BranchObject("...", scene8Tree, 2f));
+        scene8PineTree.AddBranch(new BranchObject("...", scene8Tree, 2f));
 
-        scene8Tree.AddBranch(new BranchObject("Reading a book", scene8Tree2));
+        scene8Tree.AddBranch(new BranchObject("Reading a book", true));
         scene8Tree.AddBranch(new BranchObject("Taking a nap", scene8Tree2));
 
-        scene8Tree2.AddBranch(new BranchObject("My Spouse", scene8Tree3));
-        scene8Tree2.AddBranch(new BranchObject("My Family", scene8Tree3));
-        scene8Tree2.AddBranch(new BranchObject("My Friends", scene8Tree3));
+        scene8Tree2.AddBranch(new BranchObject("My Spouse", true));
+        scene8Tree2.AddBranch(new BranchObject("My Family", true));
+        scene8Tree2.AddBranch(new BranchObject("My Friends", true));
         scene8Tree2.AddBranch(new BranchObject("No one", scene8Tree3));
 
-        scene8Tree3.AddBranch(new BranchObject("...", sceneEnd1));
+        scene8Tree3.AddBranch(new BranchObject("...", sceneEnd1, 2f));
 
-        sceneEnd1.AddBranch(new BranchObject("I'm alone", sceneEnd2));
-        sceneEnd1.AddBranch(new BranchObject("I'm alone", sceneEnd2));
-        sceneEnd1.AddBranch(new BranchObject("I'm alone", sceneEnd2));
+        sceneEnd1.AddBranch(new BranchObject("I'm alone", sceneEnd2, 3f));
+        sceneEnd1.AddBranch(new BranchObject("I'm alone", sceneEnd2, 4f));
+        sceneEnd1.AddBranch(new BranchObject("I'm alone", sceneEnd2, 5f));
 
-        sceneEnd2.AddBranch(new BranchObject("...", sceneEnd3));
+        sceneEnd2.AddBranch(new BranchObject("You are?", sceneEnd3, 5f));
 
         StartScene(scene1);
-        //StartScene(scene4);
     }
 
     public void StartScene(SceneObject scene) {
@@ -165,29 +164,41 @@ public class Storyboard : MonoBehaviour {
             branches = scene.GetBranches();
 
             foreach (BranchObject branch in branches) {
+
                 FloatingTextProperties floatingTextProperty = new FloatingTextProperties(
-                    new Vector3(Random.Range(-5f, 5f), Random.Range(1f, 3f), 100f), 
+                    //new Vector3(Random.Range(-5f, 5f), Random.Range(1f, 3f), 100f), 
+                    spawnPoint[currentSpawnPoint],
                     branch.GetBranchText(), 
                     branch.GetPath(), 
-                    branch.GetWaitTime());
+                    branch.GetWaitTime(),
+                    branch.GetFadeOut());
 
                 branchTextList.Add(branch.GetBranchText());
                 StartCoroutine("SpawnNewWord", floatingTextProperty);
+
+                currentSpawnPoint++;
+                if (currentSpawnPoint >= 4) {
+                    currentSpawnPoint = 0;
+                }
             }
         }
     }
 
     IEnumerator SpawnNewWord(FloatingTextProperties textProperty) {
         yield return new WaitForSeconds(textProperty.GetWaitTime());
-        SpawnSingleWord(textProperty.GetSpawn(), textProperty.GetText(), textProperty.GetPath());
+        SpawnSingleWord(textProperty.GetSpawn(), textProperty.GetText(), textProperty.GetPath(), textProperty.GetFadeOut());
     }
 
-    private void SpawnSingleWord(Vector3 spawn, string text, SceneObject path) {
+    private void SpawnSingleWord(Vector3 spawn, string text, SceneObject path, bool fadeOut) {
         if(branchTextList.Contains(text)) {
             FloatingText floatingTextObj = Instantiate(floatingText, spawn, Quaternion.identity).GetComponent<FloatingText>();
             floatingTextObj.transform.parent = canvas.transform;
             floatingTextObj.transform.localScale = new Vector3(1f, 1f, 1f);
             floatingTextObj.Init(text, path);
+
+            if(fadeOut) {
+                floatingTextObj.BeginLongFadeOut();
+            }
         }
     }
 }

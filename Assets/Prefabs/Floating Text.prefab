@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 4176149869194326}
   - component: {fileID: 199319271693633696}
   - component: {fileID: 198571650101585192}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ AudioSource:
   m_GameObject: {fileID: 1537199685103398}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 7eb0e6c00b43cc242b94b65d6e70d9c2,
+  OutputAudioMixerGroup: {fileID: 243791417957388842, guid: a87c4125d711449ed80f797ae6dbd65c,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 723334ee01b3519419d6f32b825a2ac2, type: 3}
   m_PlayOnAwake: 0
@@ -165,7 +165,7 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1537199685103398}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 7eb0e6c00b43cc242b94b65d6e70d9c2,
     type: 2}
@@ -280,6 +280,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2b5b542dfc034d45b3b064f7023ca01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  appearingWordSound:
+  - {fileID: 8300000, guid: b2b79a28378da7f45980cb40e3a588e0, type: 3}
+  - {fileID: 8300000, guid: 73b6ae8b2aed068459563433c7074211, type: 3}
+  - {fileID: 8300000, guid: 775bb04dab86a96418654357cb5cffa6, type: 3}
+  - {fileID: 8300000, guid: 8651dc3904628204e8b14bdf9719d95f, type: 3}
+  - {fileID: 8300000, guid: 2ca70b5a289e11c44b1b028720e0fb42, type: 3}
+  - {fileID: 8300000, guid: 72325499a1017e741a50532c737bc0ac, type: 3}
+  - {fileID: 8300000, guid: 8c6f377a68f144848a2eb2ae298c9d53, type: 3}
+  - {fileID: 8300000, guid: 52877776e864c264db80a84cf0ae5a67, type: 3}
+  - {fileID: 8300000, guid: deffc87dd9db4e84e9c0212ee568c17c, type: 3}
+  - {fileID: 8300000, guid: 64ac88d56f91ac04bbf32a75c7c2dbbf, type: 3}
+  fadeOutTime: 0.5
+  word: 
+  set: 0
 --- !u!114 &114825885821449296
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -324,7 +338,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab0535d39a0e78a4db9eb201540ae22e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
+  choiceAudio:
+  - {fileID: 8300000, guid: ce9fba762312443438c578868ab9f05f, type: 3}
+  - {fileID: 8300000, guid: e4c81b3f1625d964aafd8e8f391003a7, type: 3}
+  - {fileID: 8300000, guid: 1d4ef3deb308e744ba58f75502f730f6, type: 3}
+  - {fileID: 8300000, guid: 3c913f3ae5d3886449c4cbcce7471e92, type: 3}
+  - {fileID: 8300000, guid: d1d97e53405248647a14f93c50c9279c, type: 3}
+  - {fileID: 8300000, guid: 409a84fa5249d5d40b33ef432b3af86b, type: 3}
+  - {fileID: 8300000, guid: 7390b895c77c5264cb12e00e7d29c3fc, type: 3}
+  - {fileID: 8300000, guid: d302890fca00f73489087efa530204e7, type: 3}
+  - {fileID: 8300000, guid: 737fef77cf62da347a9a876814dd29d9, type: 3}
+  answerText: {fileID: 114825885821449296}
+  narratorCount: 0
+  musicFadeOutTime: 3.5
+  grabable: 1
 --- !u!198 &198571650101585192
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -8,7 +8,9 @@ public class FloatingText : MonoBehaviour {
     private Text text;
     private ItemDragHandler itemDragHandler;
     private ParticleSystem particleSystemRenderer;
-    private AudioSource [] audio;
+    [SerializeField] AudioClip [] appearingWordSound;
+    AudioSource myAudioSource;
+    [SerializeField] float fadeOutTime = 0.7f;
     private SceneObject path;
 
     public string word;
@@ -30,12 +32,14 @@ public class FloatingText : MonoBehaviour {
         text = GetComponent<Text>();
         itemDragHandler = GetComponent<ItemDragHandler>();
         particleSystemRenderer = GetComponentInChildren<ParticleSystem>();
-        audio = GetComponents<AudioSource>();
+        myAudioSource = GetComponent<AudioSource>();
 
         text.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f, 0f, 0f);
         itemDragHandler.enabled = false;
-        audio[0].pitch = Random.Range(0.85f, 1.1f);
-        audio[0].Play();
+        AudioClip clip = appearingWordSound[UnityEngine.Random.Range(0, appearingWordSound.Length)];
+        myAudioSource.PlayOneShot(clip);
+        //appearingWordSound[0].pitch = Random.Range(0.85f, 1.1f);
+        //appearingWordSound[0].Play();
 
         StartCoroutine("FadeIn");
     }
@@ -56,6 +60,25 @@ public class FloatingText : MonoBehaviour {
 
     public void BeginFadeOut() {
         StartCoroutine("FadeOut");
+    }
+
+    public void BeginLongFadeOut() {
+        set = true;
+        StartCoroutine("LongFadeOut");
+        GetComponent<ItemDragHandler>().grabable = false;
+    }
+
+    IEnumerator LongFadeOut() {
+        GetComponentInChildren<ParticleSystem>().Stop();
+
+        for (int i = 10; i >= 0; i--) {
+            text.color = new Color(text.color.r, text.color.g, text.color.b, 0.1f * i);
+            yield return new WaitForSeconds(fadeOutTime);
+        }
+
+        yield return new WaitForSeconds(2f);
+
+        Destroy(gameObject);
     }
 
     IEnumerator FadeOut() {

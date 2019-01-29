@@ -8,16 +8,19 @@ public class FloatingTextProperties {
     private string text;
     private SceneObject path;
     private float waitTime;
+    public bool fadeOut;
 
     public FloatingTextProperties(Vector3 spawn, string text) {
         this.spawn = spawn;
         this.text = text;
+        fadeOut = false;
     }
 
     public FloatingTextProperties(Vector3 spawn, string text, SceneObject path) {
         this.spawn = spawn;
         this.text = text;
         this.path = path;
+        fadeOut = false;
     }
 
     public FloatingTextProperties(Vector3 spawn, string text, SceneObject path, float waitTime) {
@@ -25,6 +28,15 @@ public class FloatingTextProperties {
         this.text = text;
         this.path = path;
         this.waitTime = waitTime;
+        fadeOut = false;
+    }
+
+    public FloatingTextProperties(Vector3 spawn, string text, SceneObject path, float waitTime, bool fadeOut) {
+        this.spawn = spawn;
+        this.text = text;
+        this.path = path;
+        this.waitTime = waitTime;
+        this.fadeOut = fadeOut;
     }
 
     public Vector3 GetSpawn() {
@@ -41,5 +53,9 @@ public class FloatingTextProperties {
 
     public float GetWaitTime() {
         return waitTime;
+    }
+
+    public bool GetFadeOut() {
+        return fadeOut;
     }
 }
